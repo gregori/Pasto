@@ -49,6 +49,7 @@ public class Dummy implements Entidade {
     /**
      * Faz as ações relevantes a esta entidade, dependendo de que tipo de entidade seja.
      */
+    @Override
     public void tick() {
         if(vivo)
             tempoParaMover--;
@@ -69,11 +70,13 @@ public class Dummy implements Entidade {
      * Retorna o ícone desta entidade, para ser mostrada pela gui do pasto
      * @see PastoGUI
      */
+    @Override
     public ImageIcon getImagem() { return imagem; }
 
     /**
      * Testa se esta entidade pode estar na mesma posição no pasto da outra, passada por parâmetro.
      */
+    @Override
     public boolean eCompativel(Entidade otherEntity) { return false; }
     
     protected static <X> X getMembroAleatorio(Collection<X> c) {

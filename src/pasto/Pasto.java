@@ -22,6 +22,8 @@ public class Pasto {
     private int         altura = 20;
 
     private int         dummys = 20;
+    
+    // Insira aqui a quantidade em questão dos seres no seu pasto
     private int         lobos;
     private int         ovelhas;
     private int         plantas;
@@ -58,6 +60,8 @@ public class Pasto {
 
         /* 
          * Agora insira o número correto de entidades no pasto.
+         * Note que quando você criar suas entidades, você terá que fazer um for para
+         * cada animal, utilizando a variável em questao: lobos, ovelhas, plantas, etc.
          */
         for (int i = 0; i < dummys; i++) {
             Entidade dummy = new Dummy(this, true);

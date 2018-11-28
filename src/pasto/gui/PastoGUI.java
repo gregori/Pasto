@@ -13,7 +13,6 @@ public class PastoGUI extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final ImageIcon II_UNKNOWN    = new ImageIcon("imagens/unknown.gif");
     private final ImageIcon II_EMPTY      = new ImageIcon("imagens/empty.gif");
     private final int       ESCALA         = 30;
     private Engine          engine;
@@ -28,8 +27,10 @@ public class PastoGUI extends JFrame implements ActionListener {
     private JButton         stopButton    = new JButton("Parar");
     private JButton         exitButton    = new JButton("Sair");
 
+    @SuppressWarnings("unused")
     private int altura;
-    private int largura;
+    @SuppressWarnings("unused")
+	private int largura;
     int size = 0;
 
     /**

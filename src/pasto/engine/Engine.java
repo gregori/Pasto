@@ -27,7 +27,6 @@ public class Engine implements ActionListener {
 
     public Engine (Pasto pasto) {
         this.pasto = pasto;
-        this.velocidade = velocidade;
     }
 
     public void actionPerformed(ActionEvent event) {
