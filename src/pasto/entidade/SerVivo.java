@@ -3,7 +3,7 @@ package pasto.entidade;
 import pasto.Pasto;
 
 public abstract class SerVivo {
-	private int tempoParaNovaReproducao;
+	protected int tempoParaNovaReproducao;
 	private int idade;
 	@SuppressWarnings("unused")
 	private Pasto pasto;

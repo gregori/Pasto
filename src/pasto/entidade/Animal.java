@@ -3,9 +3,9 @@ package pasto.entidade;
 import pasto.Pasto;
 
 public abstract class Animal extends SerVivo {
-	private int tempoParaMover;
-	private int tempoSemComida;
-	private int idadeParaReproducao;
+	protected int tempoParaMover;
+	protected int tempoSemComida;
+	protected int idadeParaReproducao;
 	
 	public Animal(Pasto pasto) {
 		super(pasto);
