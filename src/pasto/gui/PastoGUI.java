@@ -89,10 +89,10 @@ public class PastoGUI extends JFrame implements ActionListener {
     
 
     /**
-     * This method is called when an action event has occured and
-     * carries out the correct actions depending on the event. In this
-     * class, this means that someone has pressed any of the buttons
-     * start, stop, or exit.
+     * Este método é chamado quando um evento de ação ocorreu e
+     * faz as ações corretas dependendo do evento. Nesta classe,
+     * significa que alguem pressionou algum dos botões: 
+     * Iniciar, Parar ou sair
      */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startButton) {
@@ -113,12 +113,12 @@ public class PastoGUI extends JFrame implements ActionListener {
     }
 
     /**
-     * The method addEntity is called to notify the GUI that an entity
-     * has been added to a position. The icon of the added entity is
-     * displayed at the position.
+     * O métodoThe method adicionaEntidade é chamado para notificar a GUI
+     * de que uma entidade foi adicionada em uma posição. O ícone da entidade
+     * adicionada é mostrada na posição.
      */
 
-    public void addEntity(Entidade e, Point p) {
+    public void adicionaEntidade(Entidade e, Point p) {
         ImageIcon icon = e.getImagem();
 
         java.util.List<ImageIcon> l = icons.get(p);
@@ -136,18 +136,18 @@ public class PastoGUI extends JFrame implements ActionListener {
     }
 
     public void moveEntity(Entidade e, Point old, Point ny) {
-        removeEntity(e, old);
-        addEntity(e, ny);
+        removeEntidade(e, old);
+        adicionaEntidade(e, ny);
     }
 
     /**
-     * The method removeEntity is called to notify the GUI that an
-     * entity has been removed from a position. One icon among the
-     * icons of the remaining entities is displayed at the position.
+     * O método The method removeEntidade é chamado para notificar a GUI de que
+     * uma entidade foi removida de uma posição. Um ícone entre os ícones das
+     * entidades remanescentes é mostrado na posição.
      */
 
 
-    public void removeEntity(Entidade e, Point p) {
+    public void removeEntidade(Entidade e, Point p) {
         
         ImageIcon icon0 = e.getImagem();
 

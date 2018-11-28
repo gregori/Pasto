@@ -2,6 +2,7 @@ package pasto;
 import java.util.*;
 
 import pasto.engine.Engine;
+import pasto.entidade.Cerca;
 import pasto.entidade.Dummy;
 import pasto.entidade.Entidade;
 import pasto.gui.PastoGUI;
@@ -47,12 +48,12 @@ public class Pasto {
         /* O pasto é rodeado por uma cerca. Substitua Dummy por
          * Cerca quando você criar essa classe */
         for (int i = 0; i < largura; i++) {
-            adicionaEntidade(new Dummy(this, false), new Point(i,0));
-            adicionaEntidade(new Dummy(this, false), new Point(i, altura - 1));
+            adicionaEntidade(new Cerca(this), new Point(i,0));
+            adicionaEntidade(new Cerca(this), new Point(i, altura - 1));
         }
         for (int i = 1; i < altura-1; i++) {
-            adicionaEntidade(new Dummy(this, false), new Point(0,i));
-            adicionaEntidade(new Dummy(this, false), new Point(largura - 1,i));
+            adicionaEntidade(new Cerca(this), new Point(0,i));
+            adicionaEntidade(new Cerca(this), new Point(largura - 1,i));
         }
 
         /* 
@@ -133,7 +134,7 @@ public class Pasto {
 
         ponto.put(entidade,pos);
 
-        gui.addEntity(entidade, pos);
+        gui.adicionaEntidade(entidade, pos);
     }
     
     public void moveEntidade(Entidade e, Point posicaoNova) {
@@ -165,7 +166,7 @@ public class Pasto {
         mundo.remove(entidade); 
         grid.get(p).remove(entidade);
         ponto.remove(entidade);
-        gui.removeEntity(entidade, p);
+        gui.removeEntidade(entidade, p);
 
     }
 
