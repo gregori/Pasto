@@ -5,6 +5,7 @@ import pasto.engine.Engine;
 import pasto.entidade.Cerca;
 import pasto.entidade.Dummy;
 import pasto.entidade.Entidade;
+import pasto.entidade.Planta;
 import pasto.gui.PastoGUI;
 
 import java.awt.Point;
@@ -26,7 +27,7 @@ public class Pasto {
     // Insira aqui a quantidade em questão dos seres no seu pasto
     private int         lobos;
     private int         ovelhas;
-    private int         plantas;
+    private int         plantas = 25;
     private int         cercas;
 
     private Set<Entidade> mundo = 
@@ -67,6 +68,11 @@ public class Pasto {
             Entidade dummy = new Dummy(this, true);
             adicionaEntidade(dummy, getPosicaoLivre(dummy));
         }
+        
+        for (int i = 0; i < plantas; i++) {
+			Entidade planta = new Planta(this);
+			adicionaEntidade(planta, getPosicaoLivre(planta));
+		}
 
         gui.update();
     }
