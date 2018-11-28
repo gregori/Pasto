@@ -1,13 +1,16 @@
 package pasto.entidade;
 
+import pasto.Pasto;
+
 public abstract class SerVivo {
 	private int tempoParaNovaReproducao;
 	private int idade;
+	@SuppressWarnings("unused")
+	private Pasto pasto;
 	
 	
-	
-	public SerVivo(int tempoParaNovaReproducao) {
-		this.tempoParaNovaReproducao = tempoParaNovaReproducao;
+	public SerVivo(Pasto pasto) {
+		this.pasto = pasto;
 		this.idade = 0;
 	}
 

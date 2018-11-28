@@ -1,15 +1,14 @@
 package pasto.entidade;
 
+import pasto.Pasto;
+
 public abstract class Animal extends SerVivo {
 	private int tempoParaMover;
 	private int tempoSemComida;
 	private int idadeParaReproducao;
 	
-	public Animal(int tempoParaMover, int tempoSemComida, int idadeParaReproducao, int tempoParaNovaReproducao) {
-		super(tempoParaNovaReproducao);
-		this.tempoParaMover = tempoParaMover;
-		this.tempoSemComida = tempoSemComida;
-		this.idadeParaReproducao = idadeParaReproducao;
+	public Animal(Pasto pasto) {
+		super(pasto);
 	}
 
 	public int getTempoParaMover() {
