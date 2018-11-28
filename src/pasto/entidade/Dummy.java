@@ -7,78 +7,76 @@ import pasto.gui.PastoGUI;
 import java.util.*;
 import java.awt.*;
 
-// Note that Dummy is a pretty BAD example of object-oriented
-// programming. Instead of having separate classes for stationary and
-// mobile dummies, they are distinguished using the flag "alive".  You
-// probably do not want to base your solution on this class.
-
+/*
+ * Note que a classe Dummy é um exemplo MUITO ruim de OOP.
+ * Ao invés de ter classes separadas para dummies parados
+ * e móveis, eles são dinstinquigeis pela flag "vivo". Você
+ * não deve usar essa classe como base para sua solução nesta
+ * classe.
+ */
 
 public class Dummy implements Entidade {
-    /** The icon of this entity. */
-    private final ImageIcon image = new ImageIcon("imagens/unknown.gif"); 
-    /** The position of this entity. */
-    protected Pasto pasture;
-    /** The number of ticks this entity should get before moving. */
-    protected int moveDelay;
+    /** O ícone desta entidade. */
+    private final ImageIcon imagem = new ImageIcon("imagens/unknown.gif"); 
+    /** A posição desta entidade. */
+    protected Pasto pasto;
+    /** O número de tiques que devem passar até que essa entidade possa se mover. */
+    protected int tempoParaMover;
 
-    protected boolean alive = true;
+    protected boolean vivo = true;
 
     /**
-     * Creates a new instance of this class, with the given pasture as
-     * its pasture.
-     * @param pasture the pasture this entity should belong to.
+     * Cria uma nova instância desta classe, com o pasto dado como seu pasto
+     * @param pasto o pasto a qual esta entidade deve pertencer.
      */
-    public Dummy(Pasto pasture) {
-        this.pasture = pasture;
-        moveDelay = 10;
+    public Dummy(Pasto pasto) {
+        this.pasto = pasto;
+        tempoParaMover = 10;
     }
 
     /**
-     * Creates a new instance of this class, with the given pasture as
-     * its pasture, and position as its position.
-     * @param pasture the pasture this entity should belong to.
-     * @param position the position of this entity.
+     * Cria uma nova instância desta classe, com o pasto como seu pasto
+ 	 * e uma flag "vivo" para indicar se é um Dummy móvel ou estático.
+     * @param pasto o pasto a qual esta entidade pertence.
+     * @param vivo true ou false se o Dummy é vivo ou não.
      */
-    public Dummy(Pasto pasture, boolean alive) {
-        this.pasture   = pasture;
-        this.alive     = alive;
-        moveDelay      = 10;
+    public Dummy(Pasto pasto, boolean vivo) {
+        this.pasto   = pasto;
+        this.vivo     = vivo;
+        tempoParaMover      = 10;
     }
 
     /**
-     * Performs the relevant actions of this entity, depending on what
-     * kind of entity it is.
+     * Faz as ações relevantes a esta entidade, dependendo de que tipo de entidade seja.
      */
     public void tick() {
-        if(alive)
-            moveDelay--;
+        if(vivo)
+            tempoParaMover--;
         
-        if(moveDelay == 0) {
+        if(tempoParaMover == 0) {
             Point neighbour = 
-                (Point)getRandomMember
-                (pasture.getVizinhosLivres(this));
+                (Point)getMembroAleatorio
+                (pasto.getVizinhosLivres(this));
             
             if(neighbour != null) 
-                pasture.moveEntidade(this, neighbour);
+                pasto.moveEntidade(this, neighbour);
 
-            moveDelay = 10;
+            tempoParaMover = 10;
         }
     }
     
     /** 
-     * Returns the icon of this entity, to be displayed by the pasture
-     * gui. 
+     * Retorna o ícone desta entidade, para ser mostrada pela gui do pasto
      * @see PastoGUI
      */
-    public ImageIcon getImagem() { return image; }
+    public ImageIcon getImagem() { return imagem; }
 
     /**
-     * Tests if this entity can be on the same position in the pasture
-     * as the given one.
+     * Testa se esta entidade pode estar na mesma posição no pasto da outra, passada por parâmetro.
      */
     public boolean eCompativel(Entidade otherEntity) { return false; }
     
-    protected static <X> X getRandomMember(Collection<X> c) {
+    protected static <X> X getMembroAleatorio(Collection<X> c) {
         if (c.size() == 0)
             return null;
         
