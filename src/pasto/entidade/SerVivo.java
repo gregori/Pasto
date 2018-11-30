@@ -3,17 +3,20 @@ package pasto.entidade;
 import java.util.Collection;
 import java.util.Iterator;
 
+import javax.swing.ImageIcon;
+
 import pasto.Pasto;
 
-public abstract class SerVivo {
+public abstract class SerVivo implements Entidade {
 	protected int tempoParaNovaReproducao;
 	private int idade;
 	protected Pasto pasto;
-	
+	protected ImageIcon imagem;
 	
 	public SerVivo(Pasto pasto) {
 		this.pasto = pasto;
 		this.idade = 0;
+		reiniciaTempoParaNovaReproducao();
 	}
 
 	public int getTempoParaNovaReproducao() {
@@ -42,5 +45,22 @@ public abstract class SerVivo {
         return it.next();
     }
 	
+	@Override
+	public ImageIcon getImagem() {
+		return imagem;
+	}
+	
+	@Override
+	public void tick() {
+		tempoParaNovaReproducao--;
+	    
+	    if(tempoParaNovaReproducao == 0) {      
+	        reproduzir();
+
+	        reiniciaTempoParaNovaReproducao();
+	    }
+	}
+	
+	abstract protected void reiniciaTempoParaNovaReproducao();
 	abstract public void reproduzir();
 }

@@ -5,6 +5,8 @@ import pasto.engine.Engine;
 import pasto.entidade.Cerca;
 import pasto.entidade.Dummy;
 import pasto.entidade.Entidade;
+import pasto.entidade.Lobo;
+import pasto.entidade.Ovelha;
 import pasto.entidade.Planta;
 import pasto.gui.PastoGUI;
 
@@ -25,8 +27,8 @@ public class Pasto {
     private int         dummys = 20;
     
     // Insira aqui a quantidade em questão dos seres no seu pasto
-    private int         lobos;
-    private int         ovelhas;
+    private int         lobos = 10;
+    private int         ovelhas = 20;
     private int         plantas = 25;
     private int         cercas;
 
@@ -64,14 +66,19 @@ public class Pasto {
          * Note que quando você criar suas entidades, você terá que fazer um for para
          * cada animal, utilizando a variável em questao: lobos, ovelhas, plantas, etc.
          */
-        for (int i = 0; i < dummys; i++) {
-            Entidade dummy = new Dummy(this, true);
-            adicionaEntidade(dummy, getPosicaoLivre(dummy));
-        }
-        
         for (int i = 0; i < plantas; i++) {
 			Entidade planta = new Planta(this);
 			adicionaEntidade(planta, getPosicaoLivre(planta));
+		}
+        
+        for (int i = 0; i < ovelhas; i++) {
+			Entidade ovelha = new Ovelha(this);
+			adicionaEntidade(ovelha, getPosicaoLivre(ovelha));
+		}
+        
+        for (int i = 0; i < lobos; i++) {
+			Entidade lobo = new Lobo(this);
+			adicionaEntidade(lobo, getPosicaoLivre(lobo));
 		}
 
         gui.update();
@@ -204,17 +211,21 @@ public class Pasto {
     public Collection<Point> getVizinhosLivres(Entidade entidade) {
         Set<Point> free = new HashSet<Point>();
         Point p;
+        Point posicao = getPosicaoEntidade(entidade);
+        int entityX, entityY;
+        
+        if (posicao != null) {
+        	entityX = (int)posicao.getX();
+        	entityY = (int)posicao.getY();
 
-        int entityX = (int)getPosicaoEntidade(entidade).getX();
-        int entityY = (int)getPosicaoEntidade(entidade).getY();
-
-        for (int x = -1; x <= 1; x++) {
-            for (int y = -1; y <= 1; y++) {
-            p = new Point(entityX + x,
-                          entityY + y);
-            if (espacoLivre(p, entidade))
-                free.add(p);
-            }
+	        for (int x = -1; x <= 1; x++) {
+	            for (int y = -1; y <= 1; y++) {
+	            p = new Point(entityX + x,
+	                          entityY + y);
+	            if (espacoLivre(p, entidade))
+	                free.add(p);
+	            }
+	        }
         }
         return free;
     }

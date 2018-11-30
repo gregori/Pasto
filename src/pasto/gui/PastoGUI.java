@@ -120,20 +120,22 @@ public class PastoGUI extends JFrame implements ActionListener {
      */
 
     public void adicionaEntidade(Entidade e, Point p) {
-        ImageIcon icon = e.getImagem();
+        if (p != null) {
+        	ImageIcon icon = e.getImagem();
 
-        java.util.List<ImageIcon> l = icons.get(p);
-        if (l==null) {
-            l = new ArrayList<ImageIcon>();
-            icons.put(p, l);
+            java.util.List<ImageIcon> l = icons.get(p);
+            if (l==null) {
+                l = new ArrayList<ImageIcon>();
+                icons.put(p, l);
+            }
+            l.add(icon);
+
+            int x = (int)p.getX();
+            int y = (int)p.getY();
+            grid[x][y].setIcon(icon);
+            
+            size++;
         }
-        l.add(icon);
-
-        int x = (int)p.getX();
-        int y = (int)p.getY();
-        grid[x][y].setIcon(icon);
-        
-        size++;
     }
 
     public void moveEntity(Entidade e, Point old, Point ny) {
@@ -149,21 +151,22 @@ public class PastoGUI extends JFrame implements ActionListener {
 
 
     public void removeEntidade(Entidade e, Point p) {
-        
-        ImageIcon icon0 = e.getImagem();
-
-        java.util.List<ImageIcon> l = icons.get(p);
-        l.remove(icon0);
-
-        ImageIcon icon;
-        if (l.isEmpty()) icon = II_EMPTY ;
-            else icon = l.get(0);
-        
-        int x = (int)p.getX();
-        int y = (int)p.getY();
-        grid[x][y].setIcon(icon);
-        
-        size--;
+        if (p != null) {
+	        ImageIcon icon0 = e.getImagem();
+	
+	        java.util.List<ImageIcon> l = icons.get(p);
+	        l.remove(icon0);
+	
+	        ImageIcon icon;
+	        if (l.isEmpty()) icon = II_EMPTY ;
+	            else icon = l.get(0);
+	        
+	        int x = (int)p.getX();
+	        int y = (int)p.getY();
+	        grid[x][y].setIcon(icon);
+	        
+	        size--;
+        }
     }
 
     public void update() {
